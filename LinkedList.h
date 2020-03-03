@@ -2,18 +2,22 @@
 #define LINKED_LIST_SOMNATH
 #pragma once
 
-struct SinglyLinkedListNode {
+class SinglyLinkedListNode {
+public:
     int data;
     SinglyLinkedListNode* next;
 };
 
 class SinglyLinkedList {
-private:
+//Member variables
+public:
     int length;
     SinglyLinkedListNode* head;
 
+//Member functions
 public: 
     SinglyLinkedList();
+    ~SinglyLinkedList();
     SinglyLinkedListNode* CreateNode(int);
     void InsertAtLast(int);
     void InsertAtPosition(int, int);
@@ -25,11 +29,21 @@ SinglyLinkedList::SinglyLinkedList() {
     length = 0;
     head = nullptr;
 }
+SinglyLinkedList::~SinglyLinkedList() {
+    SinglyLinkedListNode* cur = head;
+    SinglyLinkedListNode* prev = head;
+    while (cur != nullptr) {
+        prev = cur;
+        cur = cur->next;
+        delete prev;
+    }
+}
 SinglyLinkedListNode* SinglyLinkedList::CreateNode(int data) {
     SinglyLinkedListNode* newNode = new SinglyLinkedListNode();
     newNode->data = data;
     if (head == nullptr)
         head = newNode;
+    length++;
     return newNode;
 }
 void SinglyLinkedList::InsertAtLast(int data)
@@ -75,6 +89,7 @@ void SinglyLinkedList::DeleteNode(int position) {
     if (position == 0) {
         head = head->next;
         free(temp);
+        length--;
         return;
     }
     SinglyLinkedListNode* cur = head;
@@ -87,7 +102,7 @@ void SinglyLinkedList::DeleteNode(int position) {
     }
     temp = cur->next;
     cur->next = cur->next->next;
-
+    length--;
     free(temp);
     return;
 }
