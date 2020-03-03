@@ -1,3 +1,5 @@
+#ifndef LINKED_LIST_SOMNATH
+#define LINKED_LIST_SOMNATH
 #pragma once
 
 struct SinglyLinkedListNode {
@@ -89,3 +91,5 @@ void SinglyLinkedList::DeleteNode(int position) {
     free(temp);
     return;
 }
+
+#endif
