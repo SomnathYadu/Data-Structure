@@ -8,7 +8,7 @@ InsertAtNthPosition(Node*,int,int)
 TraverseLinkedList(Node*)
 *************************************** */
 #include <iostream>
-#include "LinkedList.h"
+#include "singlyLinkedList.h"
 
 
 int main()
